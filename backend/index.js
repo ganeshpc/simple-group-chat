@@ -6,6 +6,7 @@ webSocketServer.on('connection', (webSocket) => {
     console.log('User connected');
 
     webSocket.on('message', (message) => {
+        console.log(message);
         webSocket.send(message);
     });
 });
