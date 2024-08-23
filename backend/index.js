@@ -7,10 +7,11 @@ webSocketServer.on('listening', () => {
 });
 
 webSocketServer.on('connection', (webSocket) => {
-    console.log('User connected');
-
     webSocket.on('message', (message) => {
-        console.log(message);
-        webSocket.send(message);
+        webSocketServer.clients.forEach((client) => {
+            if (client.readyState === WebSocket.OPEN) {
+                client.send(message);
+            }
+        });
     });
 });
